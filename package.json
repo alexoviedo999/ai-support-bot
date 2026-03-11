@@ -1,0 +1,15 @@
+{
+  "name": "ai-support-bot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter './apps/*' dev",
+    "build": "pnpm --filter './apps/*' build",
+    "api": "pnpm --filter api dev",
+    "widget": "pnpm --filter widget dev",
+    "dashboard": "pnpm --filter dashboard dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
