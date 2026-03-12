@@ -34,7 +34,7 @@ const init = (config: WidgetConfig = {}) => {
   root.render(
     React.createElement(ChatWidget, {
       tenantId: config.tenantId || 'demo',
-      apiBaseUrl: config.apiBaseUrl || 'https://ai-support-api.railway.app',
+      apiBaseUrl: config.apiBaseUrl || 'https://ai-support-api.vercel.app',
       botName: config.botName || 'AI Assistant',
       primaryColor: config.primaryColor || '#6366f1'
     })

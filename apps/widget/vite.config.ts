@@ -1,21 +1,22 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
   build: {
-    lib: {
-      entry: 'src/index.tsx',
-      name: 'AISupportWidget',
-      fileName: 'ai-support-widget',
-      formats: ['umd']
-    },
+    outDir: 'dist',
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        widget: resolve(__dirname, 'src/index.tsx')
+      },
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+        entryFileNames: (chunkInfo) => {
+          if (chunkInfo.name === 'widget') {
+            return 'ai-support-widget.js';
+          }
+          return 'assets/[name]-[hash].js';
         }
       }
     }

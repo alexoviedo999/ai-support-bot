@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['...', 'openssl']
+
+[phases.install]
+cmd = 'pnpm install --frozen-lockfile'
+
+[phases.build]
+cmd = 'cd apps/api && pnpm build'
+
+[start]
+cmd = 'cd apps/api && pnpm start'
