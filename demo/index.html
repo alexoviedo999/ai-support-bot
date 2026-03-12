@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechFlow - Modern Project Management</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+    }
+    
+    /* Navbar */
+    nav {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #6366f1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+    }
+    
+    .nav-links a:hover {
+      color: #6366f1;
+    }
+    
+    .btn-primary {
+      background: #6366f1;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .btn-primary:hover {
+      background: #4f46e5;
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 100px 40px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    
+    .btn-white {
+      background: white;
+      color: #6366f1;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: 2px solid white;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    /* Features */
+    .features {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .features h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    
+    .features-subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 60px;
+      font-size: 18px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #eef2ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card p {
+      color: #64748b;
+      font-size: 15px;
+    }
+    
+    /* Pricing */
+    .pricing {
+      background: #f8fafc;
+      padding: 80px 40px;
+    }
+    
+    .pricing h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    
+    .pricing-subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 60px;
+      font-size: 18px;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .pricing-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .pricing-card.popular {
+      border: 2px solid #6366f1;
+      position: relative;
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #6366f1;
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .pricing-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    
+    .price {
+      font-size: 48px;
+      font-weight: 800;
+      color: #1e293b;
+      margin: 16px 0;
+    }
+    
+    .price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #64748b;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      margin: 24px 0;
+      text-align: left;
+    }
+    
+    .pricing-features li {
+      padding: 8px 0;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .pricing-features li::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+    }
+    
+    /* FAQ */
+    .faq {
+      padding: 80px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 24px 0;
+    }
+    
+    .faq-item h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    
+    .faq-item p {
+      color: #64748b;
+      font-size: 15px;
+    }
+    
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: white;
+      padding: 60px 40px 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+    
+    .footer-brand h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    
+    .footer-brand p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+    
+    .footer-links h4 {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #94a3b8;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      padding-top: 30px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    /* Demo notice */
+    .demo-notice {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 12px 40px;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    .demo-notice a {
+      color: #92400e;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-notice">
+    🎮 <strong>Demo Site</strong> — Try the AI chat widget in the bottom-right corner! 
+    <a href="https://github.com/alexoviedo999/ai-support-bot" target="_blank">View source</a>
+  </div>
+  
+  <nav>
+    <div class="logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#6366f1"/>
+        <path d="M8 16L14 22L24 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      TechFlow
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="btn-primary">Start Free Trial</a>
+    </div>
+  </nav>
+  
+  <section class="hero">
+    <h1>Manage Projects<br>Like Never Before</h1>
+    <p>TechFlow helps teams collaborate, track progress, and ship faster. Simple enough for startups, powerful enough for enterprises.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-white">Get Started Free</a>
+      <a href="#" class="btn-outline">Watch Demo</a>
+    </div>
+  </section>
+  
+  <section class="features" id="features">
+    <h2>Everything you need</h2>
+    <p class="features-subtitle">Powerful features to help your team work smarter, not harder.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Visual Boards</h3>
+        <p>Kanban boards that adapt to your workflow. Drag, drop, and get things done.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Built for speed. No lag, no waiting. Just instant updates across your team.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Enterprise Security</h3>
+        <p>SOC 2 compliant with SSO, 2FA, and audit logs. Your data stays yours.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Integrations</h3>
+        <p>Connect with Slack, GitHub, Jira, and 100+ other tools your team already uses.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Mobile Apps</h3>
+        <p>iOS and Android apps that work offline. Stay productive anywhere.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Analytics</h3>
+        <p>Track velocity, burndown, and team health with built-in dashboards.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="pricing" id="pricing">
+    <h2>Simple, transparent pricing</h2>
+    <p class="pricing-subtitle">No hidden fees. No surprises. Cancel anytime.</p>
+    
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">$0 <span>/month</span></div>
+        <p>Perfect for small teams getting started</p>
+        <ul class="pricing-features">
+          <li>Up to 5 team members</li>
+          <li>3 projects</li>
+          <li>Basic integrations</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#" class="btn-primary" style="display: block; text-align: center;">Get Started</a>
+      </div>
+      
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Pro</h3>
+        <div class="price">$12 <span>/user/month</span></div>
+        <p>For growing teams that need more</p>
+        <ul class="pricing-features">
+          <li>Unlimited team members</li>
+          <li>Unlimited projects</li>
+          <li>Advanced integrations</li>
+          <li>Priority support</li>
+          <li>Custom workflows</li>
+        </ul>
+        <a href="#" class="btn-primary" style="display: block; text-align: center;">Start Free Trial</a>
+      </div>
+      
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <p>For large organizations with specific needs</p>
+        <ul class="pricing-features">
+          <li>Everything in Pro</li>
+          <li>SSO & SAML</li>
+          <li>Dedicated success manager</li>
+          <li>Custom contracts</li>
+          <li>SLA guarantee</li>
+        </ul>
+        <a href="#" class="btn-primary" style="display: block; text-align: center;">Contact Sales</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="faq" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <h3>How does the 14-day trial work?</h3>
+      <p>Start with full access to all Pro features. No credit card required. After 14 days, choose a plan that fits your needs or continue on our free Starter plan.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Can I change plans later?</h3>
+      <p>Absolutely! Upgrade, downgrade, or cancel anytime. Changes take effect immediately and we'll prorate any differences.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>What payment methods do you accept?</h3>
+      <p>We accept all major credit cards, PayPal, and wire transfers for annual Enterprise plans.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Is my data secure?</h3>
+      <p>Yes. We use AES-256 encryption at rest and TLS 1.3 in transit. We're SOC 2 Type II certified and undergo regular third-party security audits.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Do you offer discounts for nonprofits or education?</h3>
+      <p>Yes! We offer 50% off for verified nonprofits and educational institutions. Contact our sales team to learn more.</p>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>TechFlow</h3>
+        <p>Making project management simple for teams everywhere. Built with ❤️ in San Francisco.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">API</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2026 TechFlow. All rights reserved. This is a demo website for the AI Support Bot MVP.
+    </div>
+  </footer>
+
+  <!-- AI Support Widget -->
+  <script src="https://ai-support-widget-puce.vercel.app/ai-support-widget.js"></script>
+  <script>
+    AISupportWidget.init({
+      tenantId: 'techflow-demo',
+      botName: 'TechFlow Support',
+      primaryColor: '#6366f1'
+    });
+  </script>
+</body>
+</html>
